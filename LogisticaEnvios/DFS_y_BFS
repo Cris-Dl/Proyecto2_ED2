@@ -1,0 +1,89 @@
+using System.Collections.Generic;
+ 
+namespace LogisticaEnvios
+{
+    public class Recorridos
+    {
+        private Grafo grafo;
+ 
+        public Recorridos(Grafo grafo)
+        {
+            this.grafo = grafo;
+        }
+ 
+        public string[] BFS(string inicio)
+        {
+            int origen = grafo.BuscarIndice(inicio);
+            if (origen < 0)
+                return new string[0];
+ 
+            int n = grafo.Cantidad;
+            bool[] visitado = new bool[n];
+            int[] orden = new int[n];
+            int cantidad = 0;
+            Queue<int> cola = new Queue<int>();
+ 
+            visitado[origen] = true;
+            cola.Enqueue(origen);
+ 
+            while (cola.Count > 0)
+            {
+                int actual = cola.Dequeue();
+                orden[cantidad] = actual;
+                cantidad++;
+ 
+                Arista ruta = grafo.ObtenerRutas(actual);
+                while (ruta != null)
+                {
+                    if (!visitado[ruta.Destino])
+                    {
+                        visitado[ruta.Destino] = true;
+                        cola.Enqueue(ruta.Destino);
+                    }
+                    ruta = ruta.Siguiente;
+                }
+            }
+ 
+            return Nombres(orden, cantidad);
+        }
+ 
+        public string[] DFS(string inicio)
+        {
+            int origen = grafo.BuscarIndice(inicio);
+            if (origen < 0)
+                return new string[0];
+ 
+            int n = grafo.Cantidad;
+            bool[] visitado = new bool[n];
+            int[] orden = new int[n];
+            int cantidad = 0;
+ 
+            Explorar(origen, visitado, orden, ref cantidad);
+            return Nombres(orden, cantidad);
+        }
+ 
+        private void Explorar(int actual, bool[] visitado, int[] orden, ref int cantidad)
+        {
+            visitado[actual] = true;
+            orden[cantidad] = actual;
+            cantidad++;
+ 
+            Arista ruta = grafo.ObtenerRutas(actual);
+            while (ruta != null)
+            {
+                if (!visitado[ruta.Destino])
+                    Explorar(ruta.Destino, visitado, orden, ref cantidad);
+                ruta = ruta.Siguiente;
+            }
+        }
+ 
+        private string[] Nombres(int[] indices, int cantidad)
+        {
+            string[] nombres = new string[cantidad];
+            for (int i = 0; i < cantidad; i++)
+                nombres[i] = grafo.ObtenerNombre(indices[i]);
+            return nombres;
+        }
+    }
+}
+ 

@@ -3,10 +3,8 @@ using System.IO;
 
 namespace LogisticaEnvios
 {
-
     public class TablaHash
     {
-
         private class Nodo
         {
             public string Llave;
@@ -182,72 +180,13 @@ namespace LogisticaEnvios
             return resultado;
         }
 
-        public void Imprimir()
-        {
-            if (cantidad == 0)
-            {
-                Console.WriteLine("La tabla hash está vacía.");
-                return;
-            }
-
-            Console.WriteLine($"Envíos: {cantidad} | Cubetas: {cubetas.Length} | Factor de carga: {FactorCarga:F2}");
-            for (int i = 0; i < cubetas.Length; i++)
-            {
-                if (cubetas[i] == null) continue;
-                Console.Write($"  Cubeta {i}: ");
-                Nodo actual = cubetas[i];
-                while (actual != null)
-                {
-                    Console.Write(actual.Valor.CodigoRastreo);
-                    if (actual.Siguiente != null) Console.Write(" -> ");
-                    actual = actual.Siguiente;
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public void ImprimirDetalle()
-        {
-            Envio[] todos = ObtenerTodos();
-            if (todos.Length == 0)
-            {
-                Console.WriteLine("No hay envíos registrados.");
-                return;
-            }
-            for (int i = 0; i < todos.Length; i++)
-                Console.WriteLine(todos[i].ToString());
-        }
-
-        public void ImprimirEstadisticas()
-        {
-            int usadas = 0, maxCadena = 0, colisiones = 0;
-            for (int i = 0; i < cubetas.Length; i++)
-            {
-                int largo = 0;
-                Nodo actual = cubetas[i];
-                while (actual != null) { largo++; actual = actual.Siguiente; }
-
-                if (largo > 0) usadas++;
-                if (largo > 1) colisiones += largo - 1;
-                if (largo > maxCadena) maxCadena = largo;
-            }
-            Console.WriteLine("=== Estadísticas de la Tabla Hash ===");
-            Console.WriteLine($"Elementos:        {cantidad}");
-            Console.WriteLine($"Capacidad:        {cubetas.Length}");
-            Console.WriteLine($"Cubetas usadas:   {usadas}");
-            Console.WriteLine($"Colisiones:       {colisiones}");
-            Console.WriteLine($"Cadena más larga: {maxCadena}");
-            Console.WriteLine($"Factor de carga:  {FactorCarga:F2}");
-        }
-
         public int CargarDesdeArchivo(string ruta, out int duplicados, out int invalidos)
         {
             duplicados = 0;
             invalidos = 0;
             int cargados = 0;
 
-            if (!File.Exists(ruta))
-                throw new FileNotFoundException("No se encontró el archivo: " + ruta);
+            if (!File.Exists(ruta)) throw new FileNotFoundException("No se encontró el archivo: " + ruta);
 
             string[] lineas = File.ReadAllLines(ruta);
             for (int i = 0; i < lineas.Length; i++)

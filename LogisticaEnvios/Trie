@@ -1,0 +1,264 @@
+namespace LogisticaEnvios
+{
+    public class Trie
+    {
+        private NodoTrie raiz = new NodoTrie();
+
+        public int Cantidad { get; private set; }
+
+        public bool Insertar(string ciudad)
+        {
+            if (ciudad == null)
+                return false;
+
+            int[] clave = Convertir(ciudad);
+
+            if (clave == null || clave.Length == 0)
+                return false;
+
+            NodoTrie actual = raiz;
+
+            for (int i = 0; i < clave.Length; i++)
+            {
+                int pos = clave[i];
+
+                if (actual.Hijos[pos] == null)
+                    actual.Hijos[pos] = new NodoTrie();
+
+                actual = actual.Hijos[pos];
+            }
+
+            if (actual.EsFinDePalabra)
+                return false;
+
+            actual.EsFinDePalabra = true;
+            actual.Ciudad = ciudad.Trim();
+            Cantidad++;
+
+            return true;
+        }
+
+        public bool Buscar(string ciudad)
+        {
+            if (ciudad == null)
+                return false;
+
+            int[] clave = Convertir(ciudad);
+
+            if (clave == null || clave.Length == 0)
+                return false;
+
+            NodoTrie nodo = BuscarNodo(clave);
+
+            return nodo != null && nodo.EsFinDePalabra;
+        }
+
+        public bool Eliminar(string ciudad)
+        {
+            if (ciudad == null)
+                return false;
+
+            int[] clave = Convertir(ciudad);
+
+            if (clave == null || clave.Length == 0)
+                return false;
+
+            bool eliminado = EliminarRecursivo(raiz, clave, 0);
+
+            if (eliminado)
+                Cantidad--;
+
+            return eliminado;
+        }
+
+        private bool EliminarRecursivo(NodoTrie nodo, int[] clave, int nivel)
+        {
+            if (nivel == clave.Length)
+            {
+                if (!nodo.EsFinDePalabra)
+                    return false;
+
+                nodo.EsFinDePalabra = false;
+                nodo.Ciudad = null;
+                return true;
+            }
+
+            int pos = clave[nivel];
+
+            if (nodo.Hijos[pos] == null)
+                return false;
+
+            bool eliminado = EliminarRecursivo(nodo.Hijos[pos], clave, nivel + 1);
+
+            if (eliminado && !nodo.Hijos[pos].EsFinDePalabra && EstaVacio(nodo.Hijos[pos]))
+                nodo.Hijos[pos] = null;
+
+            return eliminado;
+        }
+
+        private bool EstaVacio(NodoTrie nodo)
+        {
+            for (int i = 0; i < NodoTrie.TotalSimbolos; i++)
+            {
+                if (nodo.Hijos[i] != null)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public string[] BuscarPorPrefijo(string prefijo)
+        {
+            if (prefijo == null)
+                return new string[0];
+
+            int[] clave = Convertir(prefijo);
+
+            if (clave == null)
+                return new string[0];
+
+            NodoTrie nodo = BuscarNodo(clave);
+
+            if (nodo == null)
+                return new string[0];
+
+            string[] resultado = new string[Contar(nodo)];
+            int indice = 0;
+
+            Recolectar(nodo, resultado, ref indice);
+
+            return resultado;
+        }
+
+        public void Mostrar()
+        {
+            string[] ciudades = new string[Cantidad];
+            int indice = 0;
+
+            Recolectar(raiz, ciudades, ref indice);
+
+            if (Cantidad == 0)
+            {
+                System.Console.WriteLine("No hay ciudades registradas.");
+                return;
+            }
+
+            for (int i = 0; i < ciudades.Length; i++)
+                System.Console.WriteLine(ciudades[i]);
+        }
+
+        private NodoTrie BuscarNodo(int[] clave)
+        {
+            NodoTrie actual = raiz;
+
+            for (int i = 0; i < clave.Length; i++)
+            {
+                actual = actual.Hijos[clave[i]];
+
+                if (actual == null)
+                    return null;
+            }
+
+            return actual;
+        }
+
+        private int Contar(NodoTrie nodo)
+        {
+            int total = nodo.EsFinDePalabra ? 1 : 0;
+
+            for (int i = 0; i < NodoTrie.TotalSimbolos; i++)
+            {
+                if (nodo.Hijos[i] != null)
+                    total += Contar(nodo.Hijos[i]);
+            }
+
+            return total;
+        }
+
+        private void Recolectar(NodoTrie nodo, string[] resultado, ref int indice)
+        {
+            if (nodo.EsFinDePalabra)
+            {
+                resultado[indice] = nodo.Ciudad;
+                indice++;
+            }
+
+            for (int i = 0; i < NodoTrie.TotalSimbolos; i++)
+            {
+                if (nodo.Hijos[i] != null)
+                    Recolectar(nodo.Hijos[i], resultado, ref indice);
+            }
+        }
+
+        private int[] Convertir(string texto)
+        {
+            int[] temporal = new int[texto.Length];
+            int n = 0;
+            bool espacioPendiente = false;
+
+            for (int i = 0; i < texto.Length; i++)
+            {
+                char c = texto[i];
+
+                if (char.IsWhiteSpace(c))
+                {
+                    if (n > 0)
+                        espacioPendiente = true;
+
+                    continue;
+                }
+
+                int indice = Indice(c);
+
+                if (indice < 0)
+                    return null;
+
+                if (espacioPendiente)
+                {
+                    temporal[n] = 0;
+                    n++;
+                    espacioPendiente = false;
+                }
+
+                temporal[n] = indice;
+                n++;
+            }
+
+            int[] clave = new int[n];
+
+            for (int i = 0; i < n; i++)
+                clave[i] = temporal[i];
+
+            return clave;
+        }
+
+        private int Indice(char c)
+        {
+            if (c >= 'a' && c <= 'z')
+                return 2 + (c - 'a');
+
+            if (c >= 'A' && c <= 'Z')
+                return 2 + (c - 'A');
+
+            switch (c)
+            {
+                case '-': return 1;
+                case 'ñ':
+                case 'Ñ': return 28;
+                case 'á':
+                case 'Á': return 2;
+                case 'é':
+                case 'É': return 6;
+                case 'í':
+                case 'Í': return 10;
+                case 'ó':
+                case 'Ó': return 16;
+                case 'ú':
+                case 'Ú':
+                case 'ü':
+                case 'Ü': return 22;
+                default: return -1;
+            }
+        }
+    }
+}

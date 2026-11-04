@@ -1,0 +1,157 @@
+﻿<Window x:Class="LogisticaEnvios.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sistema de Logística de Envíos" 
+        WindowState="Maximized" Background="#F5F6FA">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#2F3640">
+            <StackPanel Margin="10,20,10,10">
+                <TextBlock Text="LOGÍSTICA ED2" FontSize="22" FontWeight="Bold" Foreground="White" TextAlignment="Center" Margin="0,0,0,30"/>
+
+                <Button x:Name="BtnMenuRutas" Content="1. Configurar Rutas" Height="45" Margin="0,0,0,10" Background="#0097E6" Foreground="White" FontSize="14" Click="BtnMenu_Click"/>
+                <Button x:Name="BtnMenuEnvios" Content="2. Gestionar Envíos" Height="45" Margin="0,0,0,10" Background="#353B48" Foreground="White" FontSize="14" Click="BtnMenu_Click"/>
+                <Button x:Name="BtnMenuRastreo" Content="3. Rastrear Pedido" Height="45" Margin="0,0,0,10" Background="#353B48" Foreground="White" FontSize="14" Click="BtnMenu_Click"/>
+                <Button x:Name="BtnMenuEnrutamiento" Content="4. Enrutamiento Logístico" Height="45" Margin="0,0,0,10" Background="#353B48" Foreground="White" FontSize="14" Click="BtnMenu_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" Background="White" Margin="15" CornerRadius="10" Padding="20">
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" BlurRadius="10" Opacity="0.2"/>
+            </Border.Effect>
+            <Grid>
+
+                <Grid x:Name="PanelRutas" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Configuración de Red (Grafo y Union-Find)" FontSize="20" FontWeight="Bold" Foreground="#2F3640" Margin="0,0,0,15"/>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                                <TextBlock Text="Ciudad Origen:" Foreground="#718093"/>
+                                <TextBox x:Name="TxtNuevaCiudadOrigen" Height="30"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="5,0,5,0">
+                                <TextBlock Text="Ciudad Destino:" Foreground="#718093"/>
+                                <TextBox x:Name="TxtNuevaCiudadDestino" Height="30"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Margin="5,0,5,0">
+                                <TextBlock Text="Costo (Q):" Foreground="#718093"/>
+                                <TextBox x:Name="TxtNuevoCosto" Height="30"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Margin="5,0,5,0">
+                                <TextBlock Text="Tiempo (min):" Foreground="#718093"/>
+                                <TextBox x:Name="TxtNuevoTiempo" Height="30"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="4" Margin="5,0,0,0" VerticalAlignment="Bottom">
+                                <Button x:Name="BtnAgregarRuta" Content="Agregar Ruta" Height="30" Background="#0097E6" Foreground="White" FontWeight="Bold" Click="BtnAgregarRuta_Click"/>
+                            </StackPanel>
+                        </Grid>
+                        <CheckBox x:Name="ChkUnSoloSentido" Content="Ruta de un solo sentido" Margin="0,0,0,10"/>
+                    </StackPanel>
+
+                    <Border Grid.Row="1" Background="#2F3640" CornerRadius="10" Margin="0,10,0,0" ClipToBounds="True">
+                        <Canvas x:Name="CanvasGrafo" SizeChanged="CanvasGrafo_SizeChanged" />
+                    </Border>
+                </Grid>
+
+                <StackPanel x:Name="PanelEnvios" Visibility="Collapsed">
+                    <TextBlock Text="Gestión de Envíos (Tabla Hash)" FontSize="20" FontWeight="Bold" Foreground="#2F3640" Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Carga Masiva y Validación de Rutas:" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                    <Button x:Name="BtnCargarDatos" Content="Cargar y Validar CSV / TXT" Height="40" Background="#44BD32" Foreground="White" FontWeight="Bold" Click="BtnCargarDatos_Click"/>
+
+                    <TextBox x:Name="TxtResultadosCargaMasiva" Height="140" Margin="0,10,0,20" TextWrapping="Wrap" IsReadOnly="True" 
+                             Background="#F5F6FA" Padding="10" VerticalScrollBarVisibility="Auto" FontFamily="Consolas"
+                             Text="El informe de validación de envíos aparecerá aquí..."/>
+
+                    <Separator Margin="0,5,0,15"/>
+
+                    <TextBlock Text="Registro Manual:" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Código Rastreo:" Foreground="#718093"/>
+                            <TextBox x:Name="TxtManCodigo" Height="30" Margin="0,0,0,10"/>
+                            <TextBlock Text="Ciudad Origen:" Foreground="#718093"/>
+                            <TextBox x:Name="TxtManOrigen" Height="30" Margin="0,0,0,10"/>
+                            <TextBlock Text="Remitente:" Foreground="#718093"/>
+                            <TextBox x:Name="TxtManRemitente" Height="30" Margin="0,0,0,10"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Destinatario:" Foreground="#718093"/>
+                            <TextBox x:Name="TxtManDestinatario" Height="30" Margin="0,0,0,10"/>
+                            <TextBlock Text="Ciudad Destino:" Foreground="#718093"/>
+                            <TextBox x:Name="TxtManDestino" Height="30" Margin="0,0,0,10"/>
+                        </StackPanel>
+                    </Grid>
+                    <Button x:Name="BtnAgregarEnvioManual" Content="Guardar Envío en Tabla Hash" Height="40" Background="#E1B12C" Foreground="White" FontWeight="Bold" Margin="0,15,0,0" Click="BtnAgregarEnvioManual_Click"/>
+                </StackPanel>
+
+                <StackPanel x:Name="PanelRastreo" Visibility="Collapsed">
+                    <TextBlock Text="Rastrear Pedido (Tabla Hash)" FontSize="20" FontWeight="Bold" Foreground="#2F3640" Margin="0,0,0,20"/>
+                    <TextBlock Text="Ingrese el código único de rastreo:" Foreground="#718093" Margin="0,0,0,10"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="TxtCodigoRastreo" Height="40" FontSize="16" Padding="5" VerticalContentAlignment="Center"/>
+                        <Button x:Name="BtnBuscarEnvio" Grid.Column="1" Content="Buscar" Margin="10,0,0,0" Background="#2F3640" Foreground="White" FontWeight="Bold" Click="BtnBuscarEnvio_Click"/>
+                    </Grid>
+                    <TextBlock Text="Resultados:" FontWeight="SemiBold" Margin="0,30,0,10"/>
+                    <TextBox x:Name="TxtResultadoEnvio" Height="150" TextWrapping="Wrap" IsReadOnly="True" Background="#F5F6FA" Padding="15" FontSize="14"/>
+                </StackPanel>
+
+                <StackPanel x:Name="PanelEnrutamiento" Visibility="Collapsed">
+                    <TextBlock Text="Cálculo de Rutas (Trie + Dijkstra)" FontSize="20" FontWeight="Bold" Foreground="#2F3640" Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Origen (Autocompletado Trie):" Foreground="#718093" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtOrigen" Height="35" Padding="5" VerticalContentAlignment="Center" TextChanged="TxtOrigen_TextChanged"/>
+                    <ListBox x:Name="ListaSugerenciasOrigen" Height="60" Visibility="Collapsed" SelectionChanged="ListaSugerenciasOrigen_SelectionChanged"/>
+
+                    <TextBlock Text="Destino (Autocompletado Trie):" Foreground="#718093" Margin="0,15,0,5"/>
+                    <TextBox x:Name="TxtDestino" Height="35" Padding="5" VerticalContentAlignment="Center" TextChanged="TxtDestino_TextChanged"/>
+                    <ListBox x:Name="ListaSugerenciasDestino" Height="60" Visibility="Collapsed" SelectionChanged="ListaSugerenciasDestino_SelectionChanged"/>
+
+                    <TextBlock Text="Criterio de optimización Dijkstra:" Margin="0,20,0,10" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <RadioButton x:Name="RbtnTiempo" Content="Más rápido (Tiempo)" IsChecked="True" Margin="0,0,20,0"/>
+                        <RadioButton x:Name="RbtnCosto" Content="Más económico (Costo)"/>
+                    </StackPanel>
+
+                    <Button x:Name="BtnCalcularRuta" Content="Calcular Ruta" Height="45" Background="#E1B12C" Foreground="White" FontWeight="Bold" Click="BtnCalcularRuta_Click"/>
+
+                    <TextBlock Text="Detalles de la ruta calculada:" FontWeight="SemiBold" Margin="0,20,0,5"/>
+                    <TextBox x:Name="TxtResultadoRuta" Height="150" TextWrapping="Wrap" IsReadOnly="True" Background="#F5F6FA" Padding="15" FontSize="14"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+
+
