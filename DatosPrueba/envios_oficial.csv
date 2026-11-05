@@ -1,0 +1,31 @@
+CodigoRastreo,Remitente,Destinatario,CiudadOrigen,CiudadDestino,Prioridad
+ENV-1001,Cristhian De León,Universidad Rafael Landívar,Quetzaltenango,Guatemala,Tiempo
+ENV-1002,Almacén Doña Carmen,Carlos Ruiz,Quetzaltenango,Retalhuleu,Costo
+ENV-1003,Maria Lopez,Ana Gomez,Guatemala,Peten,Tiempo
+ENV-1004,Luis Fernandez,Carmen Diaz,Escuintla,Zacapa,Costo
+ENV-1005,Jorge Ramirez,Sofia Martinez,Alta Verapaz,Izabal,Tiempo
+ENV-1006,Pedro Sanchez,Lucia Torres,Chimaltenango,San Marcos,Costo
+ENV-1007,Miguel Angel,Rosa Morales,Huehuetenango,Jutiapa,Tiempo
+ENV-1008,Antonio Cruz,Laura Herrera,Solola,El Progreso,Costo
+ENV-1009,Francisco Castro,Elena Castro,Sacatepequez,Baja Verapaz,Tiempo
+ENV-1010,Ricardo Ortiz,Teresa Mendoza,Suchitepequez,Chiquimula,Costo
+ENV-1011,Raul Silva,Marta Vega,Quiche,Santa Rosa,Tiempo
+ENV-1012,David Castillo,Isabel Rojas,Totonicapan,Jalapa,Costo
+ENV-1013,Mario Medina,Silvia Romero,Izabal,Quetzaltenango,Tiempo
+ENV-1014,Fernando Rios,Alicia Cruz,Peten,Guatemala,Costo
+ENV-1015,Daniel Navarro,Beatriz Aguilar,Zacapa,Huehuetenango,Tiempo
+ENV-1016,Alejandro Santos,Gloria Paredes,Jutiapa,Escuintla,Costo
+ENV-1017,Roberto Soto,Blanca Escobar,San Marcos,Alta Verapaz,Tiempo
+ENV-1018,Manuel Reyes,Patricia Leon,El Progreso,Solola,Costo
+ENV-1019,Victor Ramos,Sonia Mendez,Baja Verapaz,Suchitepequez,Tiempo
+ENV-1020,Hugo Vargas,Diana Rios,Chiquimula,Quiche,Costo
+ENV-1021,Andres Gil,Paula Blanco,Santa Rosa,Totonicapan,Tiempo
+ENV-1022,Javier Molina,Claudia Nunez,Jalapa,Chimaltenango,Costo
+ENV-1023,Sergio Guzman,Veronica Peña,Guatemala,Izabal,Tiempo
+ENV-1024,Diego Cortes,Natalia Cabrera,Quetzaltenango,Peten,Costo
+ENV-1025,Pablo Marin,Monica Campos,Retalhuleu,Zacapa,Tiempo
+ENV-1026,Adrian Fuentes,Lorena Vega,Escuintla,Huehuetenango,Costo
+ENV-1027,Mauricio Delgado,Tania Miranda,Alta Verapaz,Jutiapa,Tiempo
+ENV-1028,Felipe Iglesias,Raquel Varela,San Marcos,El Progreso,Costo
+ENV-1029,Oscar Carrillo,Ines Serrano,Huehuetenango,Baja Verapaz,Tiempo
+ENV-1030,Emilio Montes,Marina Rivas,Solola,Chiquimula,Costo

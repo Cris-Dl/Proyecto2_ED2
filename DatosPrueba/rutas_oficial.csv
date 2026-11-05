@@ -1,0 +1,41 @@
+Origen,Destino,Costo,Tiempo,UnSoloSentido
+Guatemala,Escuintla,50,60,false
+Escuintla,Retalhuleu,100,120,false
+Retalhuleu,Quetzaltenango,60,90,false
+Quetzaltenango,San Marcos,45,75,false
+San Marcos,Huehuetenango,80,110,false
+Huehuetenango,Quiche,90,130,false
+Quiche,Totonicapan,55,80,false
+Totonicapan,Quetzaltenango,30,45,false
+Guatemala,Chimaltenango,40,60,false
+Chimaltenango,Solola,70,100,false
+Solola,Quetzaltenango,85,120,false
+Guatemala,El Progreso,60,90,false
+El Progreso,Zacapa,75,105,false
+Zacapa,Chiquimula,30,45,false
+Chiquimula,Jutiapa,80,120,false
+Jutiapa,Jalapa,65,95,false
+Jalapa,El Progreso,50,75,false
+Guatemala,Santa Rosa,70,100,false
+Santa Rosa,Jutiapa,55,85,false
+Escuintla,Santa Rosa,60,90,false
+Guatemala,Alta Verapaz,180,240,false
+Alta Verapaz,Baja Verapaz,45,70,false
+Baja Verapaz,Guatemala,140,190,false
+Alta Verapaz,Peten,200,300,false
+Zacapa,Izabal,120,160,false
+Izabal,Peten,250,350,true
+Escuintla,Suchitepequez,50,70,false
+Suchitepequez,Retalhuleu,40,60,false
+Chimaltenango,Sacatepequez,25,40,false
+Sacatepequez,Guatemala,35,55,false
+Quiche,Alta Verapaz,160,220,true
+Huehuetenango,Peten,300,400,true
+Izabal,Alta Verapaz,150,210,false
+San Marcos,Retalhuleu,90,130,false
+Totonicapan,Solola,60,85,false
+Chiquimula,Zacapa,30,45,false
+Jalapa,Guatemala,110,150,false
+Santa Rosa,Jalapa,85,125,false
+Suchitepequez,Quetzaltenango,110,150,false
+El Progreso,Baja Verapaz,95,140,false
