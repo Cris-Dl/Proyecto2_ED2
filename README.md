@@ -39,6 +39,9 @@ Para lograr la eficiencia del sistema, se implementaron las siguientes estructur
 * **Framework:** .NET Framework 4.7.2 (o compatible).
 * Sistema Operativo Windows (para la correcta ejecución de WPF).
 
+## Ejecución del programa
+Para poder ejecutar el programa se debe ingresar a la carpeta Lógistica de envíos y ejecutar el archivo denominado *MainWindow.xaml.cs*
+
 
 ## DOCUMENTACION
 
