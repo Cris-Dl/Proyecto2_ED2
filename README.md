@@ -8,9 +8,7 @@ Proyecto final para el curso de **Estructura de Datos II**. Es un sistema logís
 ##  Descripción del Proyecto y Escenario
 **Guate Envíos** simula la red logística de una empresa de paquetería a nivel nacional. El escenario principal resuelve dos grandes desafíos de la industria:
 1. **La Topología de la Red:** Mantener un mapa de las sedes (ciudades) y sus conexiones (carreteras), considerando factores como el tiempo de viaje, el costo y el estado operativo de las mismas (cierres o aislamientos).
-2. **El Procesamiento de Envíos:** Procesar miles de paquetes garantizando su unicidad mediante un código de rastreo, validando si es factible entregarlos, y calculando la hoja de ruta matemática más óptima según la prioridad del cliente (Menor Costo o Menor Tiempo).
-
-**Regla de Negocio Crítica:** Todo el motor de enrutamiento y almacenamiento fue construido **desde cero**, manipulando memoria dinámica (punteros) y arreglos primitivos. **No se utilizó ninguna colección nativa de C#** (`List<T>`, `Dictionary`, `Queue`, etc.), demostrando un dominio absoluto del manejo de memoria a bajo nivel.
+2. **El Procesamiento de Envíos:** Procesar varios paquetes garantizando su unicidad mediante un código de rastreo, validando si es factible entregarlos, y calculando la hoja de ruta matemática más óptima según la prioridad del cliente (Menor Costo o Menor Tiempo).
 
 
 ##  Estructuras Utilizadas y Justificación
@@ -19,7 +17,7 @@ Para lograr la eficiencia del sistema, se implementaron las siguientes estructur
 
 1. **Grafo Dirigido (Listas de Adyacencia):** 
    * Uso: Modela la red de ciudades y carreteras.
-   * Justificación: La red vial es un grafo "disperso". Usar una Matriz de Adyacencia desperdiciaría memoria espacial masivamente, por lo que la Lista de Adyacencia ahorra memoria RAM a cambio de un ligero costo de tiempo en la búsqueda de vecinos.
+   * Justificación: La red vial es un grafo "disperso". Usar una Matriz de Adyacencia por lo que la Lista de Adyacencia ahorra memoria RAM a cambio de un ligero costo de tiempo en la búsqueda de vecinos.
 2. **Tabla Hash (con Encadenamiento):**
    * Uso: Almacenamiento y búsqueda de paquetes (Envíos).
    * Justificación: Garantiza tiempos de búsqueda y registro de **O(1)**. Se implementó una función Hash basada en *djb2* y listas enlazadas manuales para resolver colisiones, junto con un algoritmo de rehashing automático para escalar el tamaño del arreglo.
