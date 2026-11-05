@@ -7,8 +7,8 @@ Proyecto final para el curso de **Estructura de Datos II**. Es un sistema logís
 
 ##  Descripción del Proyecto y Escenario
 **Guate Envíos** simula la red logística de una empresa de paquetería a nivel nacional. El escenario principal resuelve dos grandes desafíos de la industria:
-1. **La Topología de la Red:** Mantener un mapa de las sedes (ciudades) y sus conexiones (carreteras), considerando factores como el tiempo de viaje, el costo y el estado operativo de las mismas (cierres o aislamientos).
-2. **El Procesamiento de Envíos:** Procesar varios paquetes garantizando su unicidad mediante un código de rastreo, validando si es factible entregarlos, y calculando la hoja de ruta matemática más óptima según la prioridad del cliente (Menor Costo o Menor Tiempo).
+1. **Rutas de envio:** Mantener un mapa de las sedes (ciudades) y sus conexiones (carreteras), considerando factores como el tiempo de viaje, el costo y el estado operativo de las mismas (cierres o aislamientos).
+2. **Procesamiento de Envíos:** Procesar varios paquetes garantizando su unicidad mediante un código de rastreo, validando si es factible entregarlos, y calculando la hoja de ruta matemática más óptima según la prioridad del cliente (Menor Costo o Menor Tiempo).
 
 
 ##  Estructuras Utilizadas y Justificación
