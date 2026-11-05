@@ -45,6 +45,7 @@ Para lograr la eficiencia del sistema, se implementaron las siguientes estructur
 ```bash
    git clone [https://github.com/Cris-Dl/Proyecto2_ED2.git](https://github.com/Cris-Dl/Proyecto2_ED2.git)
 
+
 ## DOCUMENTACION
 
 [Manual Tecnico](https://github.com/Cris-Dl/Proyecto2_ED2/blob/main/Manual%20Tecnico%20Proyecto%20%232%20EDII.pdf)
