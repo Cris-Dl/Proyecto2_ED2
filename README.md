@@ -1,30 +1,19 @@
 # Proyecto2_ED2
 Segundo proyecto del curso Estructura de Datos II
 
-
-## DOCUMENTACION
-
-[Manual Tecnico](https://github.com/Cris-Dl/Proyecto2_ED2/blob/main/Manual%20Tecnico%20Proyecto%20%232%20EDII.pdf)
-
-[Manual De Usuario](https://www.canva.com/design/DAHaAzmiocw/emfsV6vbd3ERE_k7kJLv4Q/edit)
-
-
-# Guate Envíos - Sistema de Enrutamiento Logístico 📦🇬🇹
-
-![C#](https://img.shields.io/badge/C%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white) ![WPF](https://img.shields.io/badge/WPF-512BD4?style=for-the-badge&logo=windows&logoColor=white) 
+# Guate Envíos - Sistema de Enrutamiento Logístico 🇬🇹
 
 Proyecto final para el curso de **Estructura de Datos II**. Es un sistema logístico avanzado para la gestión de paquetería y optimización de rutas en Guatemala, desarrollado en C# bajo una arquitectura limpia y una interfaz gráfica interactiva en WPF.
 
-## 📖 Descripción del Proyecto y Escenario
+##  Descripción del Proyecto y Escenario
 **Guate Envíos** simula la red logística de una empresa de paquetería a nivel nacional. El escenario principal resuelve dos grandes desafíos de la industria:
 1. **La Topología de la Red:** Mantener un mapa de las sedes (ciudades) y sus conexiones (carreteras), considerando factores como el tiempo de viaje, el costo y el estado operativo de las mismas (cierres o aislamientos).
 2. **El Procesamiento de Envíos:** Procesar miles de paquetes garantizando su unicidad mediante un código de rastreo, validando si es factible entregarlos, y calculando la hoja de ruta matemática más óptima según la prioridad del cliente (Menor Costo o Menor Tiempo).
 
 **Regla de Negocio Crítica:** Todo el motor de enrutamiento y almacenamiento fue construido **desde cero**, manipulando memoria dinámica (punteros) y arreglos primitivos. **No se utilizó ninguna colección nativa de C#** (`List<T>`, `Dictionary`, `Queue`, etc.), demostrando un dominio absoluto del manejo de memoria a bajo nivel.
 
----
 
-## 🏗️ Estructuras Utilizadas y Justificación
+##  Estructuras Utilizadas y Justificación
 
 Para lograr la eficiencia del sistema, se implementaron las siguientes estructuras y algoritmos:
 
@@ -41,9 +30,9 @@ Para lograr la eficiencia del sistema, se implementaron las siguientes estructur
    * Uso: Validación instantánea de conectividad entre ciudades.
    * Justificación: Evita realizar un costoso recorrido de grafos recursivo (DFS) cada vez que se intenta registrar un paquete. Valida en microsegundos si la Sede A puede llegar a la Sede B (con optimizaciones de Path Compression y Union by Rank).
 5. **Algoritmos de Enrutamiento (Dijkstra, BFS, DFS):**
-   * *Dijkstra:* Calcula la ruta óptima para el cliente según el peso elegido (Costo en Quetzales o Tiempo en Minutos).
-   * *BFS (Anchura):* Calcula rutas logísticas con la menor cantidad de escalas (ignorando el peso), ideal para paquetes frágiles.
-   * *DFS (Profundidad):* Permite realizar auditorías de red o trazar rutas de contingencia exhaustivas (ej. el camión repartidor visita todas las sedes posibles hasta llegar a un punto ciego).
+   * Dijkstra: Calcula la ruta óptima para el cliente según el peso elegido (Costo en Quetzales o Tiempo en Minutos).
+   * BFS (Anchura): Calcula rutas logísticas con la menor cantidad de escalas (ignorando el peso), ideal para paquetes frágiles.
+   * DFS (Profundidad): Permite realizar auditorías de red o trazar rutas de contingencia exhaustivas (ej. el camión repartidor visita todas las sedes posibles hasta llegar a un punto ciego).
 
 ##  Instrucciones de Uso y Ejecución
 
@@ -57,3 +46,9 @@ Para lograr la eficiencia del sistema, se implementaron las siguientes estructur
    
 ```bash
    git clone [https://github.com/Cris-Dl/Proyecto2_ED2.git](https://github.com/Cris-Dl/Proyecto2_ED2.git)
+
+## DOCUMENTACION
+
+[Manual Tecnico](https://github.com/Cris-Dl/Proyecto2_ED2/blob/main/Manual%20Tecnico%20Proyecto%20%232%20EDII.pdf)
+
+[Manual De Usuario](https://www.canva.com/design/DAHaAzmiocw/emfsV6vbd3ERE_k7kJLv4Q/edit)
