@@ -2,24 +2,22 @@
 {
     public class Envio
     {
-        public string CodigoRastreo;
-        public string Remitente;
-        public string Destinatario;
-        public string CiudadOrigen;
-        public string CiudadDestino;
+        public string CodigoRastreo { get; set; }
+        public string Remitente { get; set; }
+        public string Destinatario { get; set; }
+        public string CiudadOrigen { get; set; }
+        public string CiudadDestino { get; set; }
 
-        public Envio(string codigo, string remitente, string destinatario, string origen, string destino)
+        public string Prioridad { get; set; }
+
+        public Envio(string codigoRastreo, string remitente, string destinatario, string ciudadOrigen, string ciudadDestino, string prioridad = "Costo")
         {
-            CodigoRastreo = codigo;
+            CodigoRastreo = codigoRastreo;
             Remitente = remitente;
             Destinatario = destinatario;
-            CiudadOrigen = origen;
-            CiudadDestino = destino;
-        }
-
-        public override string ToString()
-        {
-            return $"[{CodigoRastreo}] De: {Remitente} ({CiudadOrigen}) -> Para: {Destinatario} ({CiudadDestino})";
+            CiudadOrigen = ciudadOrigen;
+            CiudadDestino = ciudadDestino;
+            Prioridad = prioridad;
         }
     }
 }
