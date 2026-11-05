@@ -39,12 +39,6 @@ Para lograr la eficiencia del sistema, se implementaron las siguientes estructur
 * **Framework:** .NET Framework 4.7.2 (o compatible).
 * Sistema Operativo Windows (para la correcta ejecución de WPF).
 
-### Pasos para ejecutar:
-1. Clonar este repositorio:
-   
-```bash
-   git clone [https://github.com/Cris-Dl/Proyecto2_ED2.git](https://github.com/Cris-Dl/Proyecto2_ED2.git)
-
 
 ## DOCUMENTACION
 
